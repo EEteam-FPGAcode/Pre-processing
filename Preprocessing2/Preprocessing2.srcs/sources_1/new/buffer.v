@@ -36,10 +36,18 @@ output [15:0] data_out;
 //------------------------//
 //declarations
 reg[39:0] memory_ram[0:1023];
+reg[9:0] pointer = 0;
 
 //------------------------//
 //look for shift_out pulse
-always @(posedge 
+always @(posedge clk, posedge shift_out)
+begin
+    if(shift_out)
+        begin
+            //memory_ram[pointer] <= data_out;
+        end
+//not completed yet
+end
 
 
 
