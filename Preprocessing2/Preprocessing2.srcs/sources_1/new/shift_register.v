@@ -69,58 +69,6 @@ begin
     counter <= 0;
 end
 
-//always @(posedge clk)
-//begin
-//    if(~shift_reg_reset)
-//        begin
-//            cur_state <= next_state;
-//            if(cur_state == capture)
-//                data_reg[15:0] <= {sdo,data_reg[15:1]};
-//            else
-//                data_reg[15:0] <= data_reg[15:0];
-//        end
-//    else
-//        begin
-//            cur_state <= idle;
-//            data_reg[15:0] <= 16'd0;
-//        end
-//end
-
-//always @(*)
-//begin
-//    case(cur_state)
-//    idle:
-//        begin
-//            if(start_recording)
-//                next_state = pause1;
-//            else
-//                next_state = idle;
-//        end
-//    pause1:
-//        next_state = capture;
-//    pause2:
-//        next_state = capture;    
-//    hold:
-//        begin
-//            if(counter == 15)
-//                next_state = done;
-//            else
-//                next_state = capture;
-//        end
-//    capture:
-//        begin
-//            next_state = hold;
-//            counter = counter + 1;
-//        end
-//    done:
-//        begin
-//            counter = 0;
-//            next_state = idle;
-//        end
-//    default:
-//        next_state = idle;
-//    endcase
-//end
 always @(posedge clk)
 begin
     if(~shift_reg_reset)
@@ -173,6 +121,7 @@ begin
         cur_state <= idle;
     endcase
 end
+
 //assign data_out = (shift_out)? data_reg : 0; 
 //for debugging
 assign data_out = data_reg;
